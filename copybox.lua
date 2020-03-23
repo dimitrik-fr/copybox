@@ -1,9 +1,9 @@
--- CopyBox (dim) :
+-- CopyBox (dim) v1 : plugin for Micro Editor v.1.x
 --  * select Start & End text selection points by keys..
 --  * save/restore text selection to/from file..
 --  * execute text selection or the current line as Bash script..
 
-VERSION = "1.0"
+VERSION = "1.1"
 
 -- >>: global vals
 copy_x, copy_y = 0, 0
@@ -11,7 +11,7 @@ copy_set = false
 selection = ""
 
 
-function Fname( v )
+function Fname()
   local nm = GetOption( "copybox_filename" )
 
   if nm == nil then
@@ -67,8 +67,7 @@ end
 
 
 function Load()
-  local v = CurView()
-  local fname = Fname(v)
+  local fname = Fname()
   local fp = assert( io.open( fname, "r") )
   selection = fp:read( "*all" )
   fp:close()
@@ -78,7 +77,7 @@ function Load()
 end
 
 
-function SaveToFile()
+function SaveToFile( shell )
   local v = CurView()
   local c = v.Cursor
 
@@ -92,7 +91,17 @@ function SaveToFile()
     local fname = Fname(v)
     os.remove( fname )
     local fp = assert( io.open( fname, "w") )
+
+    if( shell ) then
+      fp:write( "cat << EOF-Shell\n" )
+      fp:write( "\n------------------------------------------------------------------------\n bash $ " )
+      fp:write( selection )
+      fp:write( "\n------------------------------------------------------------------------\n" )
+      fp:write( "\nEOF-Shell\n" )
+    end
+
     fp:write( selection )
+    fp:write( "\n" )
     fp:close()
 
     return fname
@@ -103,7 +112,7 @@ end
 
 
 function Save()
-  local fname = SaveToFile()
+  local fname = SaveToFile( false )
 
   if fname ~= "" then
     messenger:Message( "Saved CopyBox to file: " .. fname )
@@ -112,8 +121,9 @@ end
 
 
 function Exec()
-  local fname = SaveToFile()
+  local fname = SaveToFile( true )
   RunInteractiveShell(  "bash " .. fname, true, false )
+  SaveToFile( false )
 end
 
 

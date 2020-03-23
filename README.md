@@ -1,6 +1,6 @@
 # CopyBox
 
-This is a plugin for [Micro Editor](https://github.com/zyedidia/micro) covering the missed
+This is a plugin for [Micro Editor v.1.4](https://github.com/zyedidia/micro) covering the missed
 features (at least for me) around Copy/Paste stuff.
 No idea why, but on some Terminal session Copy/Paste in Micro is not working for me (sometimes
 allows to Select but not Paste, sometimes just nothing at all). And, finally, Micro Copy/Paste
@@ -30,7 +30,7 @@ name is used, but you can change it via `settings.json`, for ex:
 
 or directly within Micro by pressing Ctrl-E and then typing "set copybox_filename ..."
 
-And finally by pressing F9 you can execute the Selected text as shell script -- but this is 
+And finally by pressing F9 you can execute the Selected text as shell script -- but this is
 probably rather my own "life-hack" which I'm trying to have in any editor I'm using ;-))
 Generally instead of keeping in notes or in scripts tons of various shell commands I may need
 to use on the given server (or project, etc.) I'm just keeping them within a dedicated file
@@ -54,7 +54,7 @@ And by selecting several lines more commands can be executed together, including
 ```
 
 Along with Fn keys shortcuts assigned by default, there are also few commands added to Micro
-allowing you to execute them via Ctrl-E prompt (can still solve when your Terminal is not 
+allowing you to execute them via Ctrl-E prompt (can still solve when your Terminal is not
 sending Fn keys expected by Micro):
 
 * copy_set -- set Selection begin/end
@@ -71,7 +71,7 @@ and restart Micro:
   cp copybox.lua ~/.config/micro/plugins/copybox
 ```
 
-In case this will help someone else -- have fun & enjoy ;-)) 
+In case this will help someone else -- have fun & enjoy ;-))
 
 While, to be honest, would love to see these features implemented "natively" in Micro, as
 it could be done then much more efficiently and better integrated..
