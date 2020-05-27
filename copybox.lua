@@ -26,7 +26,7 @@ function Set()
   local v = CurView()
   local c = v.Cursor
 
-  if( copy_set ) then
+  if( copy_set or v.Buf.Cursor:HasSelection() ) then
     copy_set = false
     End()
   else
@@ -63,17 +63,22 @@ function Paste()
   end
 
   v.Buf:Replace( b, b, selection )
+  messenger:Message( "Pasted CopyBox selection.." )
 end
 
 
 function Load()
+  local v = CurView()
+  local c = v.Cursor
+  local b = Loc( c.Loc.X, c.Loc.Y )
+
   local fname = Fname()
+  messenger:Message( "Loading CopyBox from file: " .. fname )
   local fp = assert( io.open( fname, "r") )
   selection = fp:read( "*all" )
   fp:close()
 
-  messenger:Message( "Loading CopyBox from file: " .. fname )
-  Paste()
+  v.Buf:Replace( b, b, selection )
 end
 
 

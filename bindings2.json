@@ -1,0 +1,15 @@
+{
+    "Alt-/": "lua:comment.comment",
+    "Alt-=": "lua:comment.comment",
+    "F1"   : "lua:comment.comment",
+    "F10"  : "Quit",
+    "F12"  : "Undo",
+    "F2"   : "Save",
+    "F3"   : "lua:copybox2.Set",
+    "F4"   : "lua:copybox2.Save",
+    "F5"   : "lua:copybox2.Paste",
+    "F6"   : "lua:copybox2.Load",
+    "F7"   : "Find",
+    "F8"   : "DeleteLine",
+    "F9"   : "lua:copybox2.Exec"
+}

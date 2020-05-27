@@ -1,7 +1,10 @@
 # CopyBox
 
-This is a plugin for [Micro Editor v.1.4](https://github.com/zyedidia/micro) covering the missed
+This is a plugin for [Micro Editor v1.4](https://github.com/zyedidia/micro) covering the missed
 features (at least for me) around Copy/Paste stuff.
+
+There is also CopyBox2 for Micro Editor v2.0.4 (and hopefully newer v2+ ;-))
+
 No idea why, but on some Terminal session Copy/Paste in Micro is not working for me (sometimes
 allows to Select but not Paste, sometimes just nothing at all). And, finally, Micro Copy/Paste
 stuff is simply impossible to involve if I'm opening SSH session from my iPad (or at least I did
@@ -15,11 +18,11 @@ In short, CopyBox allows:
 * save/restore text selection to/from file..
 * execute text selection or the current line as Bash script..
 
-By default it uses F3 to toggle Selection ON/OFF (allowing to mark the beginning and the end
+By default it uses <F3> to toggle Selection ON/OFF (allowing to mark the beginning and the end
 of Selection). This Selection is saved internally, so you can move in editor to any other
-place and press F5 to copy to the current place previously selected text.
+place and press <F5> to copy to the current place previously selected text.
 
-By pressing F4 you can save the Selection to external file. And by pressing F6 you can read the
+By pressing <F4> you can save the Selection to external file. And by pressing <F6> you can read the
 contents of this file to the current position in editor (pretty useful when you need to copy
 or reuse some blocks of your code to other files, etc.). By default `/tmp/copybox.out` file
 name is used, but you can change it via `settings.json`, for ex:
@@ -30,13 +33,13 @@ name is used, but you can change it via `settings.json`, for ex:
 
 or directly within Micro by pressing Ctrl-E and then typing "set copybox_filename ..."
 
-And finally by pressing F9 you can execute the Selected text as shell script -- but this is
+And finally by pressing <F9> you can execute the Selected text as shell script -- but this is
 probably rather my own "life-hack" which I'm trying to have in any editor I'm using ;-))
 Generally instead of keeping in notes or in scripts tons of various shell commands I may need
 to use on the given server (or project, etc.) I'm just keeping them within a dedicated file
 from which I can start it directly from the editor whenever I need..
 
-For ex. it's enough to place my cursor to any of the following lines and press F9 to
+For ex. it's enough to place my cursor to any of the following lines and press <F9> to
 execute the given command directly from the editor:
 ```
   lscpu
@@ -63,13 +66,23 @@ sending Fn keys expected by Micro):
 * copy_load -- Load from file
 * copy_exec -- Execute Selection as shell command/script
 
-To install the plugin just copy copybox.lua file into your Micro plugins directory
+To install the plugin for Micro v1.4 just copy copybox.lua file into your Micro plugins directory
 and restart Micro:
 
 ```
   mkdir -p ~/.config/micro/plugins/copybox
   cp copybox.lua ~/.config/micro/plugins/copybox
 ```
+
+To install the plugin for Micro v2.0.4+ copy copybox2.lua file into your Micro v2 plugins directory
+and restart Micro:
+
+```
+  mkdir -p ~/.config/micro/plug/copybox2
+  cp copybox2.lua ~/.config/micro/plug/copybox2
+```
+
+> NOTE: since Micro v2 there is a feature for a plugin to NOT enforce key binding to avoid any conflicts with already assigned actions to the same keys. So CopyBox2 will only "try" to assign F3/F4/F5/F6/F9 keys, and it's up to you to decide if you prefer to use these keys this way or different (by changing key binding).
 
 In case this will help someone else -- have fun & enjoy ;-))
 
